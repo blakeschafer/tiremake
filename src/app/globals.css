@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-dark: #052424;
+  --color-terminal-darker: #031818;
+  --color-terminal-lime: #abff02;
+  --color-terminal-lime-dim: #6b9f01;
+  --color-terminal-gray: #8a9a9a;
+  --color-terminal-light: #f5f5f0;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Geist Mono", monospace;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: #052424;
+    color: white;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #abff02;
+    color: #052424;
+  }
+}
+
+@layer components {
+  .text-gradient-lime {
+    background: linear-gradient(135deg, #abff02 0%, #7acc00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .grid-dots {
+    background-image: radial-gradient(circle, rgba(171, 255, 2, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .grid-lines {
+    background-image:
+      linear-gradient(rgba(171, 255, 2, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(171, 255, 2, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .curve-divider {
+    position: relative;
+  }
+
+  .curve-divider::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: white;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+
+  .curve-divider-top {
+    position: relative;
+  }
+
+  .curve-divider-top::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: white;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-counter {
+    animation: counterSlide 0.4s ease-out forwards;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes counterSlide {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-lime {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
